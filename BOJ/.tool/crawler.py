@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 from subprocess import Popen, PIPE
+from textformatter import wrap_text
 import os
 
 
 def get_problem_info(lines):
+    # TODO: need to change start index identifier
     start = [ln.strip() for ln in lines].index('+ [53]강의 요청하기')
     end = [ln for ln in lines].index('힌트')
     
@@ -26,6 +28,7 @@ def get_problem_info(lines):
     state_lines = list(map(del_indent, prob_lines[state_stx + 2: in_stx - 1]))
     input_lines = list(map(del_indent, prob_lines[in_stx + 2: out_stx - 1]))
     output_lines = list(map(del_indent, prob_lines[out_stx + 2: exin_stx - 1]))
+    # TODO: add more ex in and ex out
     exin_lines = prob_lines[exin_stx + 2: exout_stx - 1]
     exout_lines = prob_lines[exout_stx + 2: -1]
 
@@ -44,9 +47,9 @@ def gen_prob_md(info):
     md = '#[' + info['title'] + '](' + info['url'] + ')\n\n'
     md += '| 시간 제한 | 메모리 제한 |\n| :-------: | :---------: |\n'
     md += '| {:<8} | {:<11} |\n\n'.format(info['table'][0], info['table'][1])
-    md += '## 문제\n' + info['state'] + '\n\n'  # TODO: wrap texts
-    md += '## 입력\n' + info['input'] + '\n\n'  # TODO: wrap texts
-    md += '## 출력\n' + info['output'] + '\n\n' # TODO: wrap texts
+    md += '## 문제\n' + wrap_text(info['state']) + '\n'
+    md += '## 입력\n' + wrap_text(info['input']) + '\n'
+    md += '## 출력\n' + wrap_text(info['output']) + '\n'
     return md
 
 

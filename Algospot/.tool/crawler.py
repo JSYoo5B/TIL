@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from subprocess import Popen, PIPE
+from textformatter import wrap_text
 import os
 
 
@@ -47,9 +48,9 @@ def gen_prob_md(info):
     md = '#[' + info['title'] + '](' + info['url'] + ')\n\n'
     md += '| 시간 제한 | 메모리 제한 |\n| :-------: | :---------: |\n'
     md += '| {:<9} | {:<11} |\n\n'.format(info['table'][0], info['table'][1])
-    md += '## 문제\n' + info['state'] + '\n\n'  # TODO: wrap texts
-    md += '## 입력\n' + info['input'] + '\n\n'  # TODO: wrap texts
-    md += '## 출력\n' + info['output'] + '\n\n' # TODO: wrap texts
+    md += '## 문제\n' + wrap_text(info['state']) + '\n'
+    md += '## 입력\n' + wrap_text(info['input']) + '\n'
+    md += '## 출력\n' + wrap_text(info['output']) + '\n'
     return md
 
 
