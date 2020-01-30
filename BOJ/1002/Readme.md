@@ -1,4 +1,4 @@
-#[터렛](https://acmicpc.net/problem/1002)
+# [터렛](https://acmicpc.net/problem/1002)
 
 | 시간 제한 | 메모리 제한 |
 | :-------: | :---------: |

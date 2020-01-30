@@ -1,4 +1,4 @@
-#[A-B](https://acmicpc.net/problem/1001)
+# [A-B](https://acmicpc.net/problem/1001)
 
 | 시간 제한 | 메모리 제한 |
 | :-------: | :---------: |
