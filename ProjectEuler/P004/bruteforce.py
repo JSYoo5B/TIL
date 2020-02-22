@@ -18,14 +18,12 @@ def is_palindrome(num):
 if __name__ == '__main__':
     num1 = 999
     LIMIT = 100
+    max_palindrome = 0
 
-    stop = False
     for i in range(num1, LIMIT, -1):
         for j in range(i, LIMIT, -1):
-            if is_palindrome(i * j):
-                print(i * j)
-                stop = True
-                break
-        if stop:
-            break
+            if is_palindrome(i * j) and max_palindrome < (i * j):
+                max_palindrome = (i * j)
+
+    print(max_palindrome)
 
