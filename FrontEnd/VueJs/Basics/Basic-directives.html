@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>hello vue.js</title>
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <style>
+        .tab {
+            position: absolute;
+            left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="msg_mustache">
+        <span>Mustache expression:</span>
+        <span class=tab>{{message}}</span>
+    </div>
+    <div id="msg_vtext">
+        <span>V-text directive:</span>
+        <span class=tab v-text="message">Will be replaced by v-text</span>
+    </div>
+    <div id="msg_vhtml">
+        <span>V-html directive:</span>
+        <span class=tab v-html="message">Will be replaced by v-html</span>
+    </div>
+    <div id="xss_vhtml">
+        <span>Mouse-over to try XSS:</span>
+        <span class=tab v-html="message">Will be replaced by v-html</span>
+    </div>
+
+    <script type="text/javascript">
+        function xss_script(model) {
+            model.message = '<b>Your message is changed by XSS</b>';
+        }
+
+        var text_model = {
+            message: '<i>Is this italic?</i>',
+        };
+
+        var text_directives = [new Vue({
+            el: "#msg_mustache",
+            data: text_model
+        }), new Vue({
+            el: "#msg_vtext",
+            data: text_model
+        }), new Vue({
+            el: "#msg_vhtml",
+            data: text_model
+        }), new Vue({
+            el: "#xss_vhtml",
+            data: {
+                message: "<a onMouseOver='xss_script(text_model)'><i>Is this italic?</i></a>"
+            }
+        })];
+    </script>
+</body>
+
+</html>
