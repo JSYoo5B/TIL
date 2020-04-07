@@ -1,4 +1,5 @@
 # checkout
+
 checkout == 대출 받는다. 다른 branch의 상태로 빌려온다.
 
 ```sh
@@ -15,7 +16,9 @@ $ git checkout -- <FILE_PATH>
 ```
 
 # rebase
+
 ## Branch rebase
+
 fork한 repo에서 내가 pull-request 하려 하는데, PR 이전에 repo에 commit이
 더 추가되어 있다면, 추가된 내용에 대한 base commit을 추가해서 다시 commit을
 올려야 하는 경우가 있다. 이 경우에 아래와 같은 순서로 command 처리하면 된다.
@@ -32,6 +35,7 @@ $ git push origin master
 ```
 
 ## Interactive rebase
+
 이전의 여러 commit을 수정하고 싶다면, rebase로 이전 commit들을 수정할 수 있다.
 
 interactive rebase는 관련된 가장 최신 commit에서 edit 등을 걸어야 한다.
@@ -48,6 +52,7 @@ $ git rebase -i <COMMIT_ID>^
 ```
 
 ## Cancel rebase
+
 Rebase 과정에서 오류가 났거나 원하지 않는 상태로 commit이 꼬인 경우, 아래
 명령어를 사용하여 취소, 이전 상태로 되돌린다.
 
@@ -60,6 +65,7 @@ $ git reset --hard origin/master
 ```
 
 # blame
+
 blame을 이용하면 라인단위로 각 파일의 수정이 어느 commit에서 이루어졌는지 알 수
 있다. 하지만 해당 commit 작성자가 해당 기능의 작성자라고 할 수 없다.
 
@@ -74,9 +80,15 @@ commit해서 올렸다면 마치 alpha 기능의 책임자가 author B로 파악
 다르게 보인다. 파일 이전시, commit hash 옆에 파일 이름이 나타난다.
 
 blame시 이전 commit의 file 상태를 보려면 아래와 같이 한다.
+
 ```sh
+# Show blame for <FILE> at the current HEAD
+$ git blame <FILE>
+
+# Show blame for <FILE> at the specific <COMMIT>
 $ git blame <COMMIT_ID> <FILE>
 ```
 
 # bisect
+
 commit 단위의 이진 탐색을 통해 버그가 있는 commit을 찾는다.
