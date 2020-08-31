@@ -12,6 +12,14 @@
 
 #define STRUCT_DATA		( 1 * 1024 * 1024 ) //for free_area bitmap, lmem_map
 
+unsigned int mem_size;
+unsigned long mem_offset;
+void* real_memory;
+unsigned long free_pages;
+int max_order;
+free_area_t free_area[BUDDY_MAX_ORDER];
+mem_map_t *lmem_map;
+
 void ready_for_memory( void )
 {
 	real_memory = mmap( 0, mem_size + STRUCT_DATA, 

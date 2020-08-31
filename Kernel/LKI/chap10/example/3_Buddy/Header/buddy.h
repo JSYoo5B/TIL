@@ -36,21 +36,21 @@
 #define GET_NR_PAGE(addr)	((addr) - ((unsigned long)real_memory + mem_offset) ) >> (PAGE_SHIFT)
 #define page_address( page ) ((page)->addr)
 
-unsigned int mem_size; //real memory size define...
+extern unsigned int mem_size; //real memory size define...
 //offset for mmap address space 
-unsigned long mem_offset;
+extern unsigned long mem_offset;
 //unsigned int totalpage; //number of page define...
 
-void* real_memory; //allocate by malloc
-unsigned long free_pages;
-int max_order; //support small than BUDDY_MAX_ORDER size;
+extern void* real_memory; //allocate by malloc
+extern unsigned long free_pages;
+extern int max_order; //support small than BUDDY_MAX_ORDER size;
 
 typedef struct free_area_struct
 {
 	struct list_head free_list;
 	unsigned long *map;
 } free_area_t;
-free_area_t free_area[BUDDY_MAX_ORDER];
+extern free_area_t free_area[BUDDY_MAX_ORDER];
 
 typedef struct page
 {
@@ -60,7 +60,7 @@ typedef struct page
 	int order;
 } mem_map_t;
 
-mem_map_t *lmem_map;
+extern mem_map_t *lmem_map;
 
 //struct zone : nothing to do now
 typedef struct zonelist_struct
