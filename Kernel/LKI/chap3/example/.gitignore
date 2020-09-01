@@ -1,0 +1,8 @@
+# ignore target files
+clone
+clone_pt
+fork
+fork_exec
+fork_pt
+pthread_pt
+vfork_pt
