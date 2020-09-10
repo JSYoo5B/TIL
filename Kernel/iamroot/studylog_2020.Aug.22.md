@@ -50,9 +50,20 @@
 ### Q. SIGKILL이 발생하는 경우는 어떤 경우인가? (p72)
 
 * 당시 생각한 Ctrl+C 는 SIGKILL이 아니라 SIGINT(Interrupt Signal)임.
-* 그렇게 생각되는 이유는 SIGINT에 handler가 등록되지 않은 경우, default handler가 해당 process를 종료시키기 때문임.
-* SIGKILL, SIGSTOP 등 일부 Signal은 아예 handler를 등록할 수 없음.
-* 예제로 나와있는 kill -9 $PID, 혹은 시스템 종료 프로그램 (ex. shutdown, halt, reboot 등)에서 발생시킬 것 같음.
+  그렇게 생각되는 이유는 SIGINT에 handler가 등록되지 않은 경우,
+  default handler가 해당 process를 종료시키기 때문임.
+* SIGKILL은 대부분 명시적으로 호출했을 때만 발생함. (ex. kill -9 $PID)
+  [참고 링크 (GNU signal 설명)](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html)
+* kill 명령어는 기본적으로 SIGTERM(종료 요청)을 대상 process에게 전송함.
+  이는 어디까지나 **종료 요청**이므로, handler에서 종료를 방지할 수도 있음.
+  (ex. 워드에서 수정 후 저장되지 않은 상태에서 종료 시 저장 여부를 물어보는 등)
+* kill 명령어의 예시에서 나온 -9 옵션은 SIGKILL의 Portable number임.
+  [참고 링크 (Wiki)](https://en.wikipedia.org/wiki/Signal_%28IPC%29#POSIX_signals)
+  즉, kill 명령어는 process가 자발적으로 종료될 수 있도록 Signal을 보내는 것이며,
+  특히 kill -9는 무조건 강제 종료하라는 뜻이다. (직접 handler를 등록할 수 없고, 무조건 종료되므로)
+* 아마 shutdown, halt, reboot 등의 명령어도 처음에는 모든 process에게 SIGTERM을 전송하여 자발적 종료를 유도한 뒤,
+  일정 시간 뒤에도 여전히 살아있는 process를 기다리다가 결국엔 SIGKILL로 완전 종료시킴.
+  [shutdown 소스 참고](https://github.com/systemd/systemd/blob/f8bff7805ea1252c2421d07a92bf5b19f4f16aa7/src/shutdown/shutdown.c#L392-L396)
 
 ### Q. 캐시 친화력이 무슨 뜻인가? (p76)
 
