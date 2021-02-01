@@ -12,7 +12,7 @@ def SieveOfEratosthenes(number):
     primes = [x for x in range(2, number)]
     
     for factor in range(2, int(sqrt(number))):
-        primes = list(filter(lambda x: x == factor or x % factor != 0, primes))
+        primes = [p for p in primes if p == factor or p % factor != 0]
     
     return primes
 
@@ -21,6 +21,6 @@ if __name__ == '__main__':
     primes = SieveOfEratosthenes(int(sqrt(REQUEST)))
     max_factor = 0
     
-    factors = list(filter(lambda x: REQUEST % x == 0, primes))
+    factors = [f for f in primes if REQUEST % f == 0]
 
     print(max(factors))
