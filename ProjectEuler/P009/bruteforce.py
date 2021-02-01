@@ -15,10 +15,16 @@
 def is_pythagorean_triplet(a, b, c):
     return a*a + b*b == c*c
 
-if __name__ == '__main__':
-    for c in range(333, 500):
-        for a in range(2, int((1000 - c) / 2)):
-            b = 1000 - c - a
-            if is_pythagorean_triplet(a, b, c):
-                print(a * b * c)
+REQUEST=1000
 
+if __name__ == '__main__':
+    answer = 0
+    for c in range(int(REQUEST/3), int(REQUEST/2)):
+        for a in range(2, int((REQUEST - c) / 2)):
+            b = REQUEST - c - a
+            if is_pythagorean_triplet(a, b, c):
+                answer = a * b * c
+                break
+        if answer != 0:
+            break
+    print(answer)
