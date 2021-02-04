@@ -9,10 +9,7 @@ from math import sqrt
 REQUEST = 600851475143
 
 def SieveOfEratosthenes(number):
-    primes = []
-
-    for i in range(0, number):
-        primes.append(i)
+    primes = [i for i in range(0, number)]
 
     primes[0] = 0
     primes[1] = 0
@@ -24,20 +21,17 @@ def SieveOfEratosthenes(number):
             primes[non_prime] = 0
             non_prime += factor
     
-    try:
-        while True:
-            primes.remove(0)
-    except ValueError:
-        return primes
+    primes = [p for p in primes if p != 0]
+    return primes
 
 if __name__ == '__main__':
     # Supposes that Prime factor may not exceed sqrt of given number
     primes = SieveOfEratosthenes(int(sqrt(REQUEST)))
-    max_factor = 0
+    factors = []
 
-    for i in range(len(primes),0):
-        if REQUEST % primes[i] == 0:
-            max_factor = primes[i]
-            break
+    for p in primes:
+        if REQUEST % p == 0:
+            factors.append(p)
 
+    max_factor = max(factors)
     print(max_factor)
