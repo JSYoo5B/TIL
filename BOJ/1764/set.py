@@ -10,7 +10,7 @@ if __name__ == '__main__':
         n_seen = input()
         n_seens.add(n_seen)
 
-    n_heard_seens = [ p for p in n_heards if p in n_seens ]
+    n_heard_seens = list(n_heards & n_seens)
     n_heard_seens.sort()
     print(len(n_heard_seens))
     for p in n_heard_seens:
