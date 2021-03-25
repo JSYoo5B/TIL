@@ -1,18 +1,13 @@
 package net.jsyoo5b.functhink.ch1.wordfreq;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Words {
-    // List-up non-words (articles, conjunctions, contraction followings, etc.)
-    private static final Set<String> NON_WORDS = new HashSet<String>() {{
-        add("the"); add("and"); add("of");  add("to");  add("a");
-        add("i");   add("it");  add("in");  add("or");  add("is");
-        add("d"); add("s"); add("as");  add("so");  add("but");
-        add("be");
-    }};
+public class ConventionalWord extends Word{
 
+    @Override
     public Map<String, Integer> wordFreq(String words) {
         // TreeMap will store word and it's frequency <Word, FreqCnt>
         TreeMap<String, Integer> wordMap = new TreeMap<String, Integer>();
