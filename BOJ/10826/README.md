@@ -1,4 +1,4 @@
-# [피보나치 수 4](https://www.acmicpc.net/problem/10870)
+# [피보나치 수 4](https://www.acmicpc.net/problem/10826)
 
 | 시간 제한 | 메모리 제한 |
 | :-------: | :---------: |
