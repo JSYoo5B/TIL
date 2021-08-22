@@ -1,0 +1,9 @@
+# remove python caches
+**/__pycache__/
+
+# remove temporal compiled executable files
+a.out
+
+# remove temporal files by editor
+*.swp
+*.swo
