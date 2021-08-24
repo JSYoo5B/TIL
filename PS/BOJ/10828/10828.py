@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import sys
+
 class Stack:
     def __init__(self):
         self.container = []
@@ -23,10 +25,10 @@ class Stack:
         return self.container[-1]
 
 if __name__ == '__main__':
-    op_cnt = int(input())
+    op_cnt = int(sys.stdin.readline().strip())
     s = Stack()
     for _ in range(op_cnt):
-        operation = input()
+        operation = sys.stdin.readline().strip()
         arg = 0
         if operation.startswith('push'):
             arg = int(operation.split()[1])
