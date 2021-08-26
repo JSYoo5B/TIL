@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+import sys
 from collections import deque
 
 if __name__ == '__main__':
-    op_cnt = int(input())
+    op_cnt = int(sys.stdin.readline().strip())
     q = deque()
     for _ in range(op_cnt):
-        operation = input()
+        operation = sys.stdin.readline().strip()
         arg = 0
         if operation.startswith('push'):
             arg = operation.split()[1]
