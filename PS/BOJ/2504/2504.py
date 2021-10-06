@@ -9,6 +9,9 @@ if __name__ == '__main__':
             stack.append(c)
         elif c == ')':
             temp = 0
+            if len(stack) == 0:
+                invalid = True
+                break
             while len(stack) > 0:
                 top = stack[-1]
                 if isinstance(top, int):
@@ -24,6 +27,9 @@ if __name__ == '__main__':
                     break
         elif c == ']':
             temp = 0
+            if len(stack) == 0:
+                invalid = True
+                break
             while len(stack) > 0:
                 top = stack[-1]
                 if isinstance(top, int):
