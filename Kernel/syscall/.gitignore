@@ -5,3 +5,4 @@ exit
 open
 read
 write
+close
