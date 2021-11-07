@@ -2,7 +2,7 @@ CC=gcc
 # Add static flag to prevent linking shared objects
 CFLAGS=-static -g
 
-all: fork exec
+all: fork exec exit
 
 fork: fork.c
 	gcc -o $@ $< $(CFLAGS)
@@ -13,5 +13,10 @@ hello: hello.c
 exec: exec.c hello
 	gcc -o exec exec.c $(CFLAGS)
 
+exit: exit.c
+	gcc -o $@ $< $(CFLAGS)
+
 clean:
 	rm -f fork
+	rm -f hello exec
+	rm -f exit
