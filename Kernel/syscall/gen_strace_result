@@ -23,3 +23,6 @@ strace -T -C ./close 2> close_strace_log
 
 # Run mmap executable with strace
 strace -T -C ./mmap < mmap_input 2> mmap_strace_log
+
+# Run malloc executable with strace
+strace -T -C ./malloc > malloc_strace_log

@@ -2,7 +2,7 @@ CC=gcc
 # Add static flag to prevent linking shared objects
 CFLAGS=-static -g
 
-all: fork exec exit open read write close mmap
+all: fork exec exit open read write close mmap malloc
 
 fork: fork.c
 	$(CC) -o $@ $< $(CFLAGS)
@@ -31,6 +31,9 @@ close: close.c
 mmap: mmap.c
 	$(CC) -o $@ $< $(CFLAGS)
 
+malloc: malloc.c
+	$(CC) -o $@ $< $(CFLAGS)
+
 clean:
 	rm -f fork
 	rm -f hello exec
@@ -40,3 +43,4 @@ clean:
 	rm -f write
 	rm -f close
 	rm -f mmap
+	rm -f malloc
