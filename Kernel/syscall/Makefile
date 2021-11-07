@@ -5,31 +5,31 @@ CFLAGS=-static -g
 all: fork exec exit open read write close mmap
 
 fork: fork.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 hello: hello.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 exec: exec.c hello
-	gcc -o exec exec.c $(CFLAGS)
+	$(CC) -o exec exec.c $(CFLAGS)
 
 exit: exit.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 open: open.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 read: read.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 write: write.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 close: close.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 mmap: mmap.c
-	gcc -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $< $(CFLAGS)
 
 clean:
 	rm -f fork
