@@ -7,3 +7,4 @@ read
 write
 close
 mmap
+*_strace_log
