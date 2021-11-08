@@ -34,6 +34,9 @@ mmap: mmap.c
 malloc: malloc.c
 	$(CC) -o $@ $< $(CFLAGS)
 
+blank: blank.c
+	$(CC) -o $@ $< $(CFLAGS)
+
 clean:
 	rm -f fork
 	rm -f hello exec
@@ -44,3 +47,4 @@ clean:
 	rm -f close
 	rm -f mmap
 	rm -f malloc
+	rm -f blank
