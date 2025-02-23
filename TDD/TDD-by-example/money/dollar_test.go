@@ -14,3 +14,8 @@ func TestMultiplication(t *testing.T) {
 	product = five.Times(3)
 	assert.Equal(t, 15, product.Amount)
 }
+
+func TestEquality(t *testing.T) {
+	assert.True(t, *NewDollar(5) == *NewDollar(5))
+	assert.False(t, *NewDollar(5) == *NewDollar(6))
+}
