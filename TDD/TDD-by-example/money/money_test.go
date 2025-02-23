@@ -36,9 +36,9 @@ func TestCurrencyEquality(t *testing.T) {
 		// assert.True(t, *NewDollar(5) == *NewFranc(5))
 
 		// 타입을 직접 명시하지 않고, anonymous struct는 비교 가능하다
-		assert.True(t, *NewDollar(5) == struct{ Money }{Money{5}})
+		assert.True(t, *NewDollar(5) == struct{ money }{money{5}})
 		// 하지만 아래 포인터 주소 검사는 허용하지 않는다.
-		// assert.False(t, NewDollar(5) == &struct{ Money }{Money{5}})
+		// assert.False(t, NewDollar(5) == &struct{ money }{money{5}})
 	})
 
 	t.Run("compare by methods", func(t *testing.T) {
