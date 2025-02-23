@@ -9,8 +9,8 @@ import (
 func TestFrancMultiplication(t *testing.T) {
 	five := money.NewFranc(5)
 
-	assert.Equal(t, money.NewFranc(10), five.Times(2))
-	assert.Equal(t, money.NewFranc(15), five.Times(3))
+	assert.True(t, money.NewFranc(10).Equals(five.Times(2)))
+	assert.True(t, money.NewFranc(15).Equals(five.Times(3)))
 }
 
 func TestFrancEquality(t *testing.T) {
