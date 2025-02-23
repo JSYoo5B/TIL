@@ -1,7 +1,8 @@
-package money
+package money_test
 
 import (
 	"github.com/stretchr/testify/assert"
+	"tddbe/money"
 	"testing"
 )
 
@@ -30,29 +31,18 @@ func TestCasting(t *testing.T) {
 }
 
 func TestCurrencyEquality(t *testing.T) {
-	t.Run("cannot compare pointer and deep compare", func(t *testing.T) {
-		// 아래 코드는 컴파일 실패한다. (golang은 강타입 언어라 비교 불가능하다.)
-		// assert.False(t, NewDollar(5) == NewFranc(5))
-		// assert.True(t, *NewDollar(5) == *NewFranc(5))
-
-		// 타입을 직접 명시하지 않고, anonymous struct는 비교 가능하다
-		assert.True(t, *NewDollar(5) == struct{ money }{money{5}})
-		// 하지만 아래 포인터 주소 검사는 허용하지 않는다.
-		// assert.False(t, NewDollar(5) == &struct{ money }{money{5}})
-	})
-
 	t.Run("compare by methods", func(t *testing.T) {
-		assert.False(t, NewFranc(5).Equals(NewDollar(5)))
-		assert.False(t, NewDollar(5).Equals(NewDollar(6)))
+		assert.False(t, money.NewFranc(5).Equals(money.NewDollar(5)))
+		assert.False(t, money.NewDollar(5).Equals(money.NewDollar(6)))
 	})
 
 	t.Run("testify equals", func(t *testing.T) {
-		assert.NotEqual(t, NewFranc(5), NewDollar(5))
-		assert.NotEqual(t, NewDollar(5), NewFranc(6))
+		assert.NotEqual(t, money.NewFranc(5), money.NewDollar(5))
+		assert.NotEqual(t, money.NewDollar(5), money.NewFranc(6))
 	})
 }
 
 func TestCurrency(t *testing.T) {
-	assert.Equal(t, "USD", NewDollar(1).Currency())
-	assert.Equal(t, "CHF", NewFranc(1).Currency())
+	assert.Equal(t, "USD", money.NewDollar(1).Currency())
+	assert.Equal(t, "CHF", money.NewFranc(1).Currency())
 }

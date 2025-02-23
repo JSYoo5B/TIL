@@ -6,5 +6,10 @@ type Money interface {
 }
 
 type money struct {
-	amount int
+	amount   int
+	currency string
+}
+
+func (m *money) Currency() string {
+	return m.currency
 }
