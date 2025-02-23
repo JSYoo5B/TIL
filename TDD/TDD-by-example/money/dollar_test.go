@@ -6,14 +6,14 @@ import (
 	"testing"
 )
 
-func TestMultiplication(t *testing.T) {
+func TestDollarMultiplication(t *testing.T) {
 	five := money.NewDollar(5)
 
 	assert.Equal(t, money.NewDollar(10), five.Times(2))
 	assert.Equal(t, money.NewDollar(15), five.Times(3))
 }
 
-func TestEquality(t *testing.T) {
+func TestDollarEquality(t *testing.T) {
 	t.Run("pointer compare and deep compare", func(t *testing.T) {
 		assert.False(t, money.NewDollar(5) == money.NewDollar(5))
 		assert.True(t, *money.NewDollar(5) == *money.NewDollar(5))
