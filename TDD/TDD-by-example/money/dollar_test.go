@@ -30,3 +30,9 @@ func TestDollarEquality(t *testing.T) {
 		assert.NotEqual(t, money.NewDollar(5), money.NewDollar(6))
 	})
 }
+
+func TestDollarAddition(t *testing.T) {
+	sum := money.NewDollar(5).Plus(money.NewDollar(5))
+
+	assert.True(t, money.NewDollar(10).Equals(sum))
+}
