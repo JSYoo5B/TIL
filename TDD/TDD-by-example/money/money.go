@@ -21,8 +21,8 @@ func (m *money) Equals(other any) bool {
 		m.amount == otherMoney.getAmount() &&
 		m.currency == otherMoney.Currency()
 }
-func (m *money) Plus(other Money) Money {
-	return newMoney(m.amount+other.getAmount(), m.currency)
+func (m *money) Plus(addend Money) Expression {
+	return newMoney(m.amount+addend.getAmount(), m.currency)
 }
 func (m *money) Currency() string {
 	return m.currency
