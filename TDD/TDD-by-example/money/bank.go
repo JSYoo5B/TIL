@@ -3,7 +3,9 @@ package money
 type Bank struct{}
 
 func (b *Bank) Reduce(source Expression, currency string) Expression {
-	return NewDollar(10)
+	sum := source.(*Sum)
+	amount := sum.Augend.getAmount() + sum.Addend.getAmount()
+	return newMoney(amount, currency)
 }
 
 func NewBank() *Bank {
