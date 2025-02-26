@@ -22,7 +22,7 @@ func (m *money) Equals(other any) bool {
 		m.currency == otherMoney.Currency()
 }
 func (m *money) Plus(addend Money) Expression {
-	return newMoney(m.amount+addend.getAmount(), m.currency)
+	return NewSum(m, addend)
 }
 func (m *money) Currency() string {
 	return m.currency
