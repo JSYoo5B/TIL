@@ -28,3 +28,9 @@ func TestReduceSum(t *testing.T) {
 	reduced := bank.Reduce(sum, "USD")
 	assert.True(t, money.NewDollar(7).Equals(reduced))
 }
+
+func TestReduceMoney(t *testing.T) {
+	bank := money.NewBank()
+	reduced := bank.Reduce(money.NewDollar(1), "USD")
+	assert.True(t, money.NewDollar(1).Equals(reduced))
+}
