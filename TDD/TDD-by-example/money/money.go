@@ -24,6 +24,9 @@ func (m *money) Equals(other any) bool {
 func (m *money) Plus(addend Money) Expression {
 	return NewSum(m, addend)
 }
+func (m *money) Reduce(to string) Money {
+	return m
+}
 func (m *money) Currency() string {
 	return m.currency
 }

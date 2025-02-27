@@ -1,6 +1,8 @@
 package money
 
-type Expression interface{}
+type Expression interface {
+	Reduce(to string) Money
+}
 
 type Sum struct {
 	Augend Money
