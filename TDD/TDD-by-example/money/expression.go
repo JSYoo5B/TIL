@@ -10,7 +10,8 @@ type Sum struct {
 }
 
 func (s *Sum) Reduce(bank *Bank, to string) Money {
-	amount := s.Augend.getAmount() + s.Addend.getAmount()
+	amount := s.Augend.Reduce(bank, to).getAmount() +
+		s.Addend.Reduce(bank, to).getAmount()
 	return newMoney(amount, to)
 }
 

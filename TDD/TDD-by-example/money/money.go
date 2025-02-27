@@ -3,6 +3,7 @@ package money
 type Money interface {
 	Times(multiplier int) Money
 	Equals(other any) bool
+	Reduce(bank *Bank, to string) Money
 	Currency() string
 	getAmount() int
 }
