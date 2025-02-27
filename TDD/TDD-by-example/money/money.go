@@ -1,7 +1,6 @@
 package money
 
 type Money interface {
-	Times(multiplier int) Expression
 	Equals(other any) bool
 	Currency() string
 	getAmount() int
