@@ -1,7 +1,7 @@
 package money
 
 type Expression interface {
-	Reduce(to string) Money
+	Reduce(bank *Bank, to string) Money
 }
 
 type Sum struct {
@@ -9,7 +9,7 @@ type Sum struct {
 	Addend Money
 }
 
-func (s *Sum) Reduce(to string) Money {
+func (s *Sum) Reduce(bank *Bank, to string) Money {
 	amount := s.Augend.getAmount() + s.Addend.getAmount()
 	return newMoney(amount, to)
 }
