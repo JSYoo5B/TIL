@@ -43,8 +43,8 @@ func TestReduceMoneyDifferentCurrency(t *testing.T) {
 }
 
 func TestMixedAddition(t *testing.T) {
-	fiveBucks := money.NewDollar(5)
-	tenFrancs := money.NewFranc(10)
+	var fiveBucks money.Expression = money.NewDollar(5)
+	var tenFrancs money.Expression = money.NewFranc(10)
 	bank := money.NewBank()
 	bank.AddRate("CHF", "USD", 2)
 	result := bank.Reduce(fiveBucks.Plus(tenFrancs), "USD")

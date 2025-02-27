@@ -1,11 +1,12 @@
 package money
 
 type Money interface {
-	Times(multiplier int) Money
+	Times(multiplier int) Expression
 	Equals(other any) bool
-	Reduce(bank *Bank, to string) Money
 	Currency() string
 	getAmount() int
+
+	Expression
 }
 
 type money struct {
@@ -13,7 +14,7 @@ type money struct {
 	currency string
 }
 
-func (m *money) Times(multiplier int) Money {
+func (m *money) Times(multiplier int) Expression {
 	return newMoney(m.amount*multiplier, m.currency)
 }
 func (m *money) Equals(other any) bool {
@@ -22,7 +23,7 @@ func (m *money) Equals(other any) bool {
 		m.amount == otherMoney.getAmount() &&
 		m.currency == otherMoney.Currency()
 }
-func (m *money) Plus(addend Money) Expression {
+func (m *money) Plus(addend Expression) Expression {
 	return NewSum(m, addend)
 }
 func (m *money) Reduce(bank *Bank, to string) Money {
