@@ -19,3 +19,13 @@ func NewGraph(name string) *Graph {
 		Edges: make([]Edge, 0),
 	}
 }
+
+func (g *Graph) removeDefaultEdge(source string) {
+	var newEdges []Edge
+	for _, edge := range g.Edges {
+		if !(edge.Source == source && edge.Label == "Success") {
+			newEdges = append(newEdges, edge)
+		}
+	}
+	g.Edges = newEdges
+}

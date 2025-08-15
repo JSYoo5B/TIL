@@ -50,5 +50,42 @@ func (v *DagVisitor) Visit(node ast.Node) ast.Visitor {
 		fmt.Printf("Initial edges: %v\n", v.Graph.Edges)
 	}
 
+	if selector.Sel.Name == "SetRunPlan" {
+		sourceNode, _ := callExpr.Args[0].(*ast.Ident)
+		sourceName := sourceNode.Name
+		fmt.Printf("Found SetRunPlan for source: %s\n", sourceName)
+
+		v.Graph.removeDefaultEdge(sourceName)
+		plan := callExpr.Args[1]
+
+		if compLit, ok := plan.(*ast.CompositeLit); ok {
+			for _, elt := range compLit.Elts {
+				kvExpr := elt.(*ast.KeyValueExpr)
+				label, _ := strconv.Unquote(kvExpr.Key.(*ast.BasicLit).Value)
+				destName := kvExpr.Value.(*ast.Ident).Name
+				v.Graph.Edges = append(v.Graph.Edges, Edge{sourceName, destName, label})
+			}
+		}
+
+		if planCall, ok := plan.(*ast.CallExpr); ok {
+			// 제네릭 함수 호출(*ast.IndexExpr)인지 확인
+			if indexExpr, ok := planCall.Fun.(*ast.IndexExpr); ok {
+				if planSelector, ok := indexExpr.X.(*ast.SelectorExpr); ok {
+					// 함수 이름 비교
+					if planSelector.Sel.Name == "TerminationPlan" {
+						v.Graph.Edges = append(v.Graph.Edges, Edge{sourceName, "End", ""})
+					}
+					if planSelector.Sel.Name == "SuccessOnlyPlan" {
+						if len(planCall.Args) > 0 {
+							if dest, ok := planCall.Args[0].(*ast.Ident); ok {
+								v.Graph.Edges = append(v.Graph.Edges, Edge{sourceName, dest.Name, "Success"})
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	return v
 }
