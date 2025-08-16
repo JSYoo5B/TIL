@@ -1,0 +1,15 @@
+dag[int] SimpleAdd() generates NewSimpleAdd {
+    nodes:
+        add := add()
+
+    success:
+        add -> end
+}
+
+dag[int] SimpleMul() generates NewSimpleMul {
+    nodes:
+        mul := mul()
+
+    success:
+        mul -> end
+}

@@ -1,0 +1,7 @@
+dag[int] SimpleAdd() generates NewSimpleAdd {
+    nodes:
+        add := NewSimpleAdd()
+
+    success:
+        add -> end
+}
